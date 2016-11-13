@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\Bundle\CalderaBundle\MapPrinter\Tile;
+namespace Caldera\MapPrinter\Tile;
 
 interface TileInterface
 {

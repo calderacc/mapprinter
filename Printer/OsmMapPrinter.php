@@ -1,11 +1,11 @@
 <?php
 
-namespace Caldera\Bundle\CalderaBundle\MapPrinter\Printer;
+namespace Caldera\MapPrinter\Printer;
 
-use Caldera\Bundle\CalderaBundle\MapPrinter\Canvas\Canvas;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Element\MarkerInterface;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Element\TrackInterface;
-use Caldera\Bundle\CalderaBundle\MapPrinter\TileResolver\OsmTileResolver;
+use Caldera\MapPrinter\Canvas\Canvas;
+use Caldera\MapPrinter\Element\MarkerInterface;
+use Caldera\MapPrinter\Element\TrackInterface;
+use Caldera\MapPrinter\TileResolver\OsmTileResolver;
 
 class OsmMapPrinter
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\Bundle\CalderaBundle\MapPrinter\Coord;
+namespace Caldera\MapPrinter\Coord;
 
 class Coord
 {

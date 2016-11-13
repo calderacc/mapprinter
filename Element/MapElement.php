@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\Bundle\CalderaBundle\MapPrinter\Element;
+namespace Caldera\MapPrinter\Element;
 
 interface MapElement
 {

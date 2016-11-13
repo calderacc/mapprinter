@@ -1,11 +1,11 @@
 <?php
 
-namespace Caldera\Bundle\CalderaBundle\MapPrinter\TileResolver;
+namespace Caldera\MapPrinter\TileResolver;
 
-use Caldera\Bundle\CalderaBundle\MapPrinter\Coord\Coord;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Tile\OsmTile;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Tile\TileInterface;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Util\OsmZxyCalculator;
+use Caldera\MapPrinter\Coord\Coord;
+use Caldera\MapPrinter\Tile\OsmTile;
+use Caldera\MapPrinter\Tile\TileInterface;
+use Caldera\MapPrinter\Util\OsmZxyCalculator;
 
 class OsmTileResolver implements TileResolverInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Caldera\Bundle\CalderaBundle\MapPrinter\TileResolver;
+namespace Caldera\MapPrinter\TileResolver;
 
-use Caldera\Bundle\CalderaBundle\MapPrinter\Coord\Coord;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Tile\TileInterface;
+use Caldera\MapPrinter\Coord\Coord;
+use Caldera\MapPrinter\Tile\TileInterface;
 
 interface TileResolverInterface
 {

@@ -1,14 +1,12 @@
 <?php
 
-namespace Caldera\Bundle\CalderaBundle\MapPrinter\Canvas;
+namespace Caldera\MapPrinter\Canvas;
 
-use Caldera\Bundle\CalderaBundle\Entity\Track;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Coord\Coord;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Element\MapElement;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Element\MarkerInterface;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Element\TrackInterface;
-use Caldera\Bundle\CalderaBundle\MapPrinter\TileResolver\TileResolverInterface;
-use Caldera\Bundle\CalderaBundle\MapPrinter\Util\OsmZxyCalculator;
+use Caldera\MapPrinter\Coord\Coord;
+use Caldera\MapPrinter\Element\MarkerInterface;
+use Caldera\MapPrinter\Element\TrackInterface;
+use Caldera\MapPrinter\TileResolver\TileResolverInterface;
+use Caldera\MapPrinter\Util\OsmZxyCalculator;
 
 class Canvas
 {
