@@ -8,5 +8,7 @@
             "email": "maltehuebner@gmx.org"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^7.0"
+    }
 }
