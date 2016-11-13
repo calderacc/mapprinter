@@ -1,0 +1,12 @@
+{
+    "name": "calderacc/mapprinter",
+    "description": "Print map elements to image files.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Malte Huebner",
+            "email": "maltehuebner@gmx.org"
+        }
+    ],
+    "require": {}
+}
