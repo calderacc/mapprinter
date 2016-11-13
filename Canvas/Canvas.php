@@ -68,7 +68,7 @@ class Canvas
         return $this;
     }
 
-    protected function convertTrackToCoordArray(TrackInterface $track): array
+    public function convertTrackToCoordArray(TrackInterface $track): array
     {
         $pointList = \Polyline::decode($track->getPolyline());
         $coordList = [];
