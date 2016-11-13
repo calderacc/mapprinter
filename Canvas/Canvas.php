@@ -2,7 +2,7 @@
 
 namespace Caldera\MapPrinter\Canvas;
 
-use Caldera\MapPrinter\Coord\Coord;
+use Caldera\GeoBasic\Coord\Coord;
 use Caldera\MapPrinter\Element\MarkerInterface;
 use Caldera\MapPrinter\Element\TrackInterface;
 use Caldera\MapPrinter\TileResolver\TileResolverInterface;

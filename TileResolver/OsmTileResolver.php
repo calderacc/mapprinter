@@ -2,7 +2,7 @@
 
 namespace Caldera\MapPrinter\TileResolver;
 
-use Caldera\MapPrinter\Coord\Coord;
+use Caldera\GeoBasic\Coord\Coord;
 use Caldera\MapPrinter\Tile\OsmTile;
 use Caldera\MapPrinter\Tile\TileInterface;
 use Caldera\MapPrinter\Util\OsmZxyCalculator;
