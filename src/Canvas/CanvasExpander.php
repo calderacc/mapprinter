@@ -2,6 +2,8 @@
 
 namespace Caldera\MapPrinter\Canvas;
 
+use Caldera\GeoBasic\Bounds\Bounds;
+use Caldera\GeoBasic\Bounds\BoundsInterface;
 use Caldera\GeoBasic\Coord\CoordInterface;
 
 class CanvasExpander
@@ -50,5 +52,16 @@ class CanvasExpander
         }
 
         return $this;
+    }
+
+    public function getBounds()
+    {
+        if (!$this->northWest || !$this->southEast) {
+            return null;
+        }
+
+        $bounds = new Bounds($this->northWest, $this->southEast);
+
+        return $bounds;
     }
 }
