@@ -29,5 +29,13 @@ class CanvasExpanderTest extends \PHPUnit_Framework_TestCase
         $coord = new Coord(53, 9);
         
         $expander->expand($coord);
+
+        $bounds = $expander->getBounds();
+
+        $northWest = $bounds->getNorthWest();
+        $southEast = $bounds->getSouthEast();
+
+        $this->assertEquals($coord, $northWest);
+        $this->assertEquals($coord, $southEast);
     }
 }
