@@ -23,7 +23,7 @@ class CanvasExpander
         $this->southEast = $canvas->getSouthEast();
     }
 
-    protected function expand(CoordInterface $coord): Canvas
+    public function expand(CoordInterface $coord): CanvasExpander
     {
         if (!$this->northWest) {
             $this->northWest = clone $coord;
