@@ -3,6 +3,7 @@
 namespace Caldera\MapPrinter\Canvas;
 
 use Caldera\GeoBasic\Coord\Coord;
+use Caldera\GeoBasic\Coord\CoordInterface;
 use Caldera\MapPrinter\Element\MarkerInterface;
 use Caldera\MapPrinter\Element\TrackInterface;
 use Caldera\MapPrinter\TileResolver\TileResolverInterface;
@@ -66,6 +67,16 @@ class Canvas implements CanvasInterface
         }
 
         return $this;
+    }
+
+    public function getNorthWest()
+    {
+        return $this->northWest;
+    }
+
+    public function getSouthEast()
+    {
+        return $this->southEast;
     }
 
     public function convertTrackToCoordArray(TrackInterface $track): array
