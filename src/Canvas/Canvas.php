@@ -8,7 +8,7 @@ use Caldera\MapPrinter\Element\TrackInterface;
 use Caldera\MapPrinter\TileResolver\TileResolverInterface;
 use Caldera\MapPrinter\Util\OsmZxyCalculator;
 
-class Canvas
+class Canvas implements CanvasInterface
 {
     /** @var Coord $northWest */
     protected $northWest = null;
