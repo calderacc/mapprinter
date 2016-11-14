@@ -8,6 +8,7 @@ use Caldera\MapPrinter\Element\MarkerInterface;
 use Caldera\MapPrinter\Element\TrackInterface;
 use Caldera\MapPrinter\TileResolver\TileResolverInterface;
 use Caldera\MapPrinter\Util\OsmZxyCalculator;
+use Caldera\MapPrinter\Util\PolylineConverter;
 
 class Canvas implements CanvasInterface
 {
@@ -81,17 +82,7 @@ class Canvas implements CanvasInterface
 
     public function convertTrackToCoordArray(TrackInterface $track): array
     {
-        $pointList = \Polyline::decode($track->getPolyline());
-        $coordList = [];
-
-        while (count($pointList) > 0) {
-            $latitude = array_shift($pointList);
-            $longitude = array_shift($pointList);
-
-            $coord = new Coord($latitude, $longitude);
-
-            array_push($coordList, $coord);
-        }
+        $coordList = PolylineConverter::getCoordList($track);
 
         return $coordList;
     }
