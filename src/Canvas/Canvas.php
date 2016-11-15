@@ -83,6 +83,16 @@ class Canvas implements CanvasInterface
         return $this;
     }
 
+    public function getCanvasWidth()
+    {
+        return $this->canvasWidth;
+    }
+
+    public function getCanvasHeight()
+    {
+        return $this->canvasHeight;
+    }
+
     public function convertTrackToCoordArray(TrackInterface $track): array
     {
         $coordList = PolylineConverter::getCoordList($track);
