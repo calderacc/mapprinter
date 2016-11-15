@@ -61,7 +61,7 @@ class Canvas implements CanvasInterface
         
         /** @var TrackInterface $track */
         foreach ($this->tracks as $track) {
-            $coordList = $this->convertTrackToCoordArray($track);
+            $coordList = PolylineConverter::getCoordList($track);
 
             /** @var Coord $coord */
             foreach ($coordList as $coord) {
@@ -101,13 +101,6 @@ class Canvas implements CanvasInterface
     public function getCanvasHeight()
     {
         return $this->canvasHeight;
-    }
-
-    public function convertTrackToCoordArray(TrackInterface $track): array
-    {
-        $coordList = PolylineConverter::getCoordList($track);
-
-        return $coordList;
     }
 
     public function decorateTiles(TileResolverInterface $tileResolver): Canvas
