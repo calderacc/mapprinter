@@ -3,7 +3,6 @@
 namespace Caldera\MapPrinter\Canvas;
 
 use Caldera\GeoBasic\Coord\Coord;
-use Caldera\GeoBasic\Coord\CoordInterface;
 use Caldera\MapPrinter\Element\MarkerInterface;
 use Caldera\MapPrinter\Element\TrackInterface;
 use Caldera\MapPrinter\TileResolver\TileResolverInterface;
@@ -51,10 +50,12 @@ class Canvas implements CanvasInterface
 
     public function calculateDimensions(): Canvas
     {
+        $expander = new CanvasExpander($this);
+
         /** @var MarkerInterface $marker */
         foreach ($this->markers as $marker) {
             $coord = new Coord($marker->getLatitude(), $marker->getLongitude());
-            $this->expand($coord);
+            $expander->expand($coord);
         }
         
         /** @var TrackInterface $track */
@@ -63,10 +64,15 @@ class Canvas implements CanvasInterface
 
             /** @var Coord $coord */
             foreach ($coordList as $coord) {
-                $this->expand($coord);
+                $expander->expand($coord);
             }
         }
 
+        $bounds = $expander->getBounds();
+
+        $this->northWest = $bounds->getNorthWest();
+        $this->southEast = $bounds->getSouthEast();
+        
         return $this;
     }
 
@@ -85,35 +91,6 @@ class Canvas implements CanvasInterface
         $coordList = PolylineConverter::getCoordList($track);
 
         return $coordList;
-    }
-
-    protected function expand(Coord $coord): Canvas
-    {
-        if (!$this->northWest) {
-            $this->northWest = clone $coord;
-        } else {
-            if ($this->northWest->southOf($coord)) {
-                $this->northWest->setLatitude($coord->getLatitude());
-            }
-
-            if ($this->northWest->eastOf($coord)) {
-                $this->northWest->setLongitude($coord->getLongitude());
-            }
-        }
-
-        if (!$this->southEast) {
-            $this->southEast = clone $coord;
-        } else {
-            if ($this->southEast->northOf($coord)) {
-                $this->southEast->setLatitude($coord->getLatitude());
-            }
-
-            if ($this->southEast->westOf($coord)) {
-                $this->southEast->setLongitude($coord->getLongitude());
-            }
-        }
-
-        return $this;
     }
 
     public function decorateTiles(TileResolverInterface $tileResolver): Canvas
