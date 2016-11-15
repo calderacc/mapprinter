@@ -23,6 +23,9 @@ class Canvas implements CanvasInterface
     /** @var BoundsInterface $bounds */
     protected $bounds = null;
 
+    /** @var int $zoomLevel */
+    protected $zoomLevel;
+
     protected $canvasWidth;
     protected $canvasHeight;
     protected $offsetLeft;
@@ -71,6 +74,13 @@ class Canvas implements CanvasInterface
         return $this;
     }
 
+    public function setZoomLevel(int $zoomLevel): CanvasInterface
+    {
+        $this->zoomLevel = $zoomLevel;
+
+        return $this;
+    }
+
     public function getBounds()
     {
         return $this->bounds;
@@ -102,17 +112,15 @@ class Canvas implements CanvasInterface
 
     public function decorateTiles(TileResolverInterface $tileResolver): Canvas
     {
-        $zoomLevel = 15;
+        $topY = OsmZxyCalculator::latitudeToOSMYTile($this->bounds->getNorthWest()->getLatitude(), $this->zoomLevel);
+        $topX = OsmZxyCalculator::longitudeToOSMXTile($this->bounds->getNorthWest()->getLongitude(), $this->zoomLevel);
 
-        $topY = OsmZxyCalculator::latitudeToOSMYTile($this->northWest->getLatitude(), $zoomLevel);
-        $topX = OsmZxyCalculator::longitudeToOSMXTile($this->northWest->getLongitude(), $zoomLevel);
-
-        $bottomY = OsmZxyCalculator::latitudeToOSMYTile($this->southEast->getLatitude(), $zoomLevel);
-        $bottomX = OsmZxyCalculator::longitudeToOSMXTile($this->southEast->getLongitude(), $zoomLevel);
+        $bottomY = OsmZxyCalculator::latitudeToOSMYTile($this->bounds->getSouthEast()->getLatitude(), $this->zoomLevel);
+        $bottomX = OsmZxyCalculator::longitudeToOSMXTile($this->bounds->getSouthEast()->getLongitude(), $this->zoomLevel);
 
         for ($y = $topY; $y <= $bottomY; ++$y) {
             for ($x = $topX; $x <= $bottomX; ++$x) {
-                $this->grid[$y][$x] = $tileResolver->resolveByZxy($x, $y, $zoomLevel);
+                $this->grid[$y][$x] = $tileResolver->resolveByZxy($x, $y, $this->zoomLevel);
             }
         }
 
