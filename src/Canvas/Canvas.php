@@ -7,6 +7,7 @@ use Caldera\GeoBasic\Coord\Coord;
 use Caldera\MapPrinter\Element\MarkerInterface;
 use Caldera\MapPrinter\Element\TrackInterface;
 use Caldera\MapPrinter\TileResolver\TileResolverInterface;
+use Caldera\MapPrinter\Util\CoordPixelConverter;
 use Caldera\MapPrinter\Util\OsmZxyCalculator;
 use Caldera\MapPrinter\Util\PolylineConverter;
 
@@ -132,15 +133,23 @@ class Canvas implements CanvasInterface
 
         $image = imagecreate($width, $height);
 
-        $white = imagecolorallocatealpha($image, 255, 255, 0, 100);
+        $white = imagecolorallocatealpha($image, 255, 255, 255, 0);
+        $red = imagecolorallocatealpha($image, 255, 0, 0, 0);
+
+        imagefill($image, 5, 5, $white);
+
+        imageline($image, 5, 5, 10, 10, $red);
 
         foreach ($this->tracks as $track) {
-            $coordList = $this->convertTrackToCoordArray($track);
+            $coordList = PolylineConverter::getCoordList($track);
 
             $coordA = array_shift($coordList);
 
             while ($coordB = array_shift($coordList)) {
-                imageline($image, 0, 0, 100, 100, $white);
+                $pixelA = CoordPixelConverter::coordToPixel($this, $coordA);
+                $pixelB = CoordPixelConverter::coordToPixel($this, $coordB);
+
+                imageline($image, $pixelA->getX(), $pixelA->getY(), $pixelB->getX(), $pixelB->getY(), $red);
 
                 $coordA = $coordB;
             }
