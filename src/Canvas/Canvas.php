@@ -2,6 +2,7 @@
 
 namespace Caldera\MapPrinter\Canvas;
 
+use Caldera\GeoBasic\Bounds\BoundsInterface;
 use Caldera\GeoBasic\Coord\Coord;
 use Caldera\MapPrinter\Element\MarkerInterface;
 use Caldera\MapPrinter\Element\TrackInterface;
@@ -11,12 +12,6 @@ use Caldera\MapPrinter\Util\PolylineConverter;
 
 class Canvas implements CanvasInterface
 {
-    /** @var Coord $northWest */
-    protected $northWest = null;
-
-    /** @var Coord $southEast */
-    protected $southEast = null;
-
     /** @var array $markers */
     protected $markers = [];
 
@@ -24,6 +19,9 @@ class Canvas implements CanvasInterface
     protected $tracks = [];
 
     protected $grid = [];
+
+    /** @var BoundsInterface $bounds */
+    protected $bounds = null;
 
     protected $canvasWidth;
     protected $canvasHeight;
@@ -68,22 +66,21 @@ class Canvas implements CanvasInterface
             }
         }
 
-        $bounds = $expander->getBounds();
+        $this->bounds = $expander->getBounds();
 
-        $this->northWest = $bounds->getNorthWest();
-        $this->southEast = $bounds->getSouthEast();
-        
         return $this;
     }
 
-    public function getNorthWest()
+    public function getBounds()
     {
-        return $this->northWest;
+        return $this->bounds;
     }
 
-    public function getSouthEast()
+    public function setBounds(BoundsInterface $bounds): CanvasInterface
     {
-        return $this->southEast;
+        $this->bounds = $bounds;
+
+        return $this;
     }
 
     public function convertTrackToCoordArray(TrackInterface $track): array

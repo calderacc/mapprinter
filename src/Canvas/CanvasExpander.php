@@ -12,17 +12,19 @@ class CanvasExpander
     private $canvas;
 
     /** @var CoordInterface $northWest */
-    private $northWest;
+    private $northWest = null;
 
     /** @var CoordInterface $southEast */
-    private $southEast;
+    private $southEast = null;
 
     public function __construct(CanvasInterface $canvas)
     {
         $this->canvas = $canvas;
 
-        $this->northWest = $canvas->getNorthWest();
-        $this->southEast = $canvas->getSouthEast();
+        if ($canvas->getBounds()) {
+            $this->northWest = $canvas->getBounds()->getNorthWest();
+            $this->southEast = $canvas->getBounds()->getSouthEast();
+        }
     }
 
     public function expand(CoordInterface $coord): CanvasExpander
