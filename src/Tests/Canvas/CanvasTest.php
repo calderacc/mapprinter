@@ -10,7 +10,6 @@ class CanvasTest extends \PHPUnit_Framework_TestCase
 {
     public function testCanvas1()
     {
-        echo "TEST CANVAS 1";
         $canvas = new Canvas();
         $mockedTrack = new SimpleMockedTrack();
 
@@ -20,7 +19,5 @@ class CanvasTest extends \PHPUnit_Framework_TestCase
             ->calculateDimensions()
             ->decorateTiles(new OsmTileResolver())
             ->printElements();
-
-        echo "ENDE GELÄNDE";
     }
 }
