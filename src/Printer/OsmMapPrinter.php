@@ -35,6 +35,7 @@ class OsmMapPrinter
     {
         $this->canvas
             ->calculateDimensions()
+            ->setZoomLevel(15)
             ->decorateTiles(new OsmTileResolver())
             ->printElements();
     }
